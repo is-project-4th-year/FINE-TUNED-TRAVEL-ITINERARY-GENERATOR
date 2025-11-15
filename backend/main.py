@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
+from loader import load_extractor, load_generator
 import asyncio
 import torch
 
@@ -23,16 +24,18 @@ app.add_middleware(
 # ----------------------------
 # Load models at startup
 # ----------------------------
-print("⚡ Loading models... (this may take a while on first run)")
-extractor, tokenizer_ex = load_extractor()
-generator, tokenizer_gen = load_generator()
+@app.on_event("startup")
+async def startup_event():
+    print("🔄 Loading models into FastAPI app.state...")
+    extractor, tokenizer_ex = load_extractor()
+    generator, tokenizer_gen = load_generator()
 
-app.state.extractor = extractor
-app.state.tokenizer_ex = tokenizer_ex
-app.state.generator = generator
-app.state.tokenizer_gen = tokenizer_gen
-app.state.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print("✅ Models loaded successfully")
+    app.state.extractor = extractor
+    app.state.tokenizer_ex = tokenizer_ex
+    app.state.generator = generator
+    app.state.tokenizer_gen = tokenizer_gen
+    app.state.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print("✅ Models loaded into app.state.")
 
 
 # ----------------------------
