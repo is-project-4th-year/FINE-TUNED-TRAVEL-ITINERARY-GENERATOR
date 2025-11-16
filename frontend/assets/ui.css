@@ -1,0 +1,67 @@
+/* Safe, namespaced UI styling (soft-card look) */
+
+/* page wide container spacing */
+main .block-container {
+  max-width: 1100px;
+  padding-top: 1.6rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Streamlit container "card" look */
+.stContainer {
+  background: #141517;
+  border: 1px solid #2a2b2d;
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+}
+
+/* headings */
+h1,
+h2,
+h3 {
+  color: #ffffff;
+}
+
+/* Label text color */
+label,
+.stTextInput label {
+  color: #d6d7d8;
+}
+
+/* Buttons */
+.stButton > button {
+  background: linear-gradient(180deg, #4f8bf9, #3a72d6);
+  color: white;
+  border-radius: 10px;
+  padding: 10px 14px;
+  border: none;
+  font-weight: 600;
+}
+
+/* Example tiles (clickable) */
+.example-tile {
+  background: #17181a;
+  border: 1px solid #232426;
+  padding: 12px 14px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  color: #e8e8e8;
+}
+.example-tile:hover {
+  background: #232426;
+}
+
+/* small text */
+.small-muted {
+  color: #9b9da0;
+  font-size: 0.92rem;
+}
+
+/* make columns' inner spacing look nicer */
+[data-testid="stVerticalBlock"] > div:first-child {
+  margin-bottom: 12px;
+}

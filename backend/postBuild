@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "=== postBuild: upgrade pip and setuptools ==="
+python -m pip install -U pip setuptools wheel
+
+echo "=== postBuild: try installing PyTorch for CUDA 12.1 ==="
+# Try torch for CUDA 12.1 (widely used on HF GPU hosts). This uses the official PyTorch index.
+# If your Space host uses a different CUDA version the install will likely fail; we'll see logs.
+pip install --index-url https://download.pytorch.org/whl/cu121 -f https://download.pytorch.org/whl/cu121/torch_stable.html torch torchvision --pre || true
+
+echo "=== postBuild: try install bitsandbytes and triton ==="
+# bitsandbytes wheel often needs a CUDA-specific wheel; pip will try to fetch the right wheel.
+# If this fails we fall back and continue; loader.py handles fallback.
+pip install -U bitsandbytes triton || true
+
+echo "=== postBuild: install remaining requirements ==="
+# Install the rest of your requirements (doesn't include torch/bitsandbytes here)
+# Ensure requirements.txt is present in repo
+pip install -r requirements.txt || true
+
+echo "=== postBuild finished (some installs may have failed; check logs) ==="
