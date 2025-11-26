@@ -1,11 +1,8 @@
-_150129 Maina Ben Waweru_
-**Travel Itinerary Generator**
-Final Year Project — Large Language Model + Real-World Data Integration
+#150129 Maina Ben Waweru
+##Travel Itinerary Generator
 
-This project is an end-to-end AI itinerary generation platform powered by a local Hermes2Pro 7B model, a FastAPI backend, and a React/Next.js frontend with user authentication.
-It combines real-time city data with an LLM rewriting pipeline to produce personalized, structured travel itineraries.
-
-This README describes the project exactly as it exists — no imaginary features, no hallucinated components, only what was actually built and completed.
+***This project is an end-to-end AI itinerary generation platform powered by a local Hermes2Pro 7B model, a FastAPI backend, and a React/Next.js frontend with user authentication.
+It combines real-time city data with an LLM rewriting pipeline to produce personalized, structured travel itineraries.***
 
 ⭐ Overview
 
@@ -210,8 +207,6 @@ Protected routing
 
 ⚙ Why Hermes2Pro 7B Produces Generic Output
 
-You can confidently tell your panel:
-
 7B models have limited reasoning depth compared to larger 13B/70B models.
 
 They lack strong world knowledge and struggle with nuanced travel writing.
@@ -225,8 +220,6 @@ Small models prioritize safety and structure over creativity.
 This is normal behavior for a compact model.
 
 🐢 Why Computation Is Slow
-
-Clear justification:
 
 Hermes2Pro models generate text sequentially, 1 token at a time.
 
